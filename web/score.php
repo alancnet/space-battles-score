@@ -1,5 +1,10 @@
 	<?php
-$con = mysqli_connect(getenv("MYSQL_HOST"),getenv("MYSQL_USER"),getenv("MYSQL_PASSWORD"),getenv("MYSQL_DATABASE")); // connect to database
+$host=getenv("MYSQL_HOST");
+$user=getenv("MYSQL_USER");
+$password=getenv("MYSQL_PASSWORD");
+$database=getenv("MYSQL_DATABASE");
+
+$con = mysqli_connect($host, $user, $password, $database); // connect to database
 
 // check connection
 if ($con->connect_error) {
@@ -10,7 +15,7 @@ $myName = $_GET["name"]; // get user's name from url
 $myScore = intval($_GET['score']); // get the user's score from the url
 $Auth = $_GET["auth"]; // get the user's auth code from the url
 
-$salt = "mysalt123"; // secret salt, ensure it matches the salt found in GM
+$salt = getenv("SCORE_SALT"); // secret salt, ensure it matches the salt found in GM
 $lim = 10; // max number of score entries to show
 
 // create array to hold values for the names and scores of the top 10

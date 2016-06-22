@@ -1,0 +1,23 @@
+version: '2.0'
+services:
+  web:
+    build: web
+    environment:
+      SCORE_SALT: super-rubber-crystal-argon
+      MYSQL_HOST: database
+      MYSQL_USER: score
+      MYSQL_PASSWORD: score
+      MYSQL_DATABASE: score
+      MYSQL_ROOT_PASSWORD: score
+    ports:
+      - 8083:80
+    links:
+      - database
+  database:
+    build: database
+    environment:
+      MYSQL_USER: score
+      MYSQL_PASSWORD: score
+      MYSQL_DATABASE: score
+      MYSQL_ROOT_PASSWORD: score
+
