@@ -3,7 +3,7 @@ services:
   web:
     build: web
     environment:
-      SCORE_SALT: super-rubber-crystal-argon
+      SCORE_SALT: dontcheat315
       MYSQL_HOST: database
       MYSQL_USER: score
       MYSQL_PASSWORD: score
@@ -13,6 +13,7 @@ services:
       - 8083:80
     links:
       - database
+    restart: unless-stopped
   database:
     build: database
     environment:
@@ -20,4 +21,6 @@ services:
       MYSQL_PASSWORD: score
       MYSQL_DATABASE: score
       MYSQL_ROOT_PASSWORD: score
+    restart: unless-stopped
+
 
